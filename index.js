@@ -21,10 +21,10 @@ bot.onText(/\/subscribe(.*)/, function(msg, match) {
 
     if (content.length == 35) {
         db.push("/wallet/" + msg.from.id, { address: content });
-        bot.sendMessage(msg.from.id, "Subscribed to this wallet.");
+        bot.sendMessage(msg.from.id, "Subscribed to this wallet.", { disable_web_page_preview: true });
     }
     else {
-        bot.sendMessage(msg.from.id, "⚠ Zcash address incorrect.\n<code>/subscribe t1*********************************</code>", { parse_mode: "html" });
+        bot.sendMessage(msg.from.id, "⚠ Zcash address incorrect.\n<code>/subscribe t1*********************************</code>", { parse_mode: "html" , disable_web_page_preview: true});
     }
 });
 
@@ -37,7 +37,7 @@ bot.onText(/\/status(.*)/, function(msg) {
     for (var wi in wallets) {
         FlypoolAPI.getStatus(wallets[wi])
             .then(function(result) {
-                bot.sendMessage(msg.chat.id, formatStatus(result), { parse_mode: "html" });
+                bot.sendMessage(msg.chat.id, formatStatus(result), { parse_mode: "html", disable_web_page_preview: true });
             })
             .catch(console.error);
     }
@@ -56,7 +56,7 @@ bot.onText(/\/workers(.*)/, function(msg) {
     for (var wi in wallets) {
         FlypoolAPI.getStatus(wallets[wi])
             .then(function(result) {
-                bot.sendMessage(msg.chat.id, formatWorkers(result), { parse_mode: "html" });
+                bot.sendMessage(msg.chat.id, formatWorkers(result), { parse_mode: "html", disable_web_page_preview: true });
             })
             .catch(console.error);
     }
@@ -157,7 +157,7 @@ function sendUpdateTransactions() {
 
                     for (var tsi in toSend) {
                         console.log("formateando")
-                        bot.sendMessage(userId, formatTransaction(toSend[tsi]), { parse_mode: "html" });
+                        bot.sendMessage(userId, formatTransaction(toSend[tsi]), { parse_mode: "html", disable_web_page_preview: true });
                         console.log("mandando")
                         LOG.trace("Notificated a transaction in wallet " + walletAddr + " to the user " + userId);
                     }
