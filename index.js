@@ -28,7 +28,7 @@ bot.onText(/\/subscribe(.*)/, function(msg, match) {
     }
 });
 
-bot.onText(/\/status(.*)/, function(msg, match) {
+bot.onText(/\/status(.*)/, function(msg) {
     var wallets = [];
     try { wallets = db.getData("/wallet/" + msg.from.id); } catch (err) { }
 
@@ -37,7 +37,7 @@ bot.onText(/\/status(.*)/, function(msg, match) {
     for (var wi in wallets) {
         FlypoolAPI.getStatus(wallets[wi])
             .then(function(result) {
-                bot.sendMessage(msg.from.id, formatStatus(result), { parse_mode: "html" });
+                bot.sendMessage(msg.chat.id, formatStatus(result), { parse_mode: "html" });
             })
             .catch(console.error);
     }
@@ -47,7 +47,7 @@ bot.onText(/\/status(.*)/, function(msg, match) {
     }
 });
 
-bot.onText(/\/workers(.*)/, function(msg, match) {
+bot.onText(/\/workers(.*)/, function(msg) {
     var wallets = [];
     try { wallets = db.getData("/wallet/" + msg.from.id); } catch (err) { }
 
@@ -56,7 +56,7 @@ bot.onText(/\/workers(.*)/, function(msg, match) {
     for (var wi in wallets) {
         FlypoolAPI.getStatus(wallets[wi])
             .then(function(result) {
-                bot.sendMessage(msg.from.id, formatWorkers(result), { parse_mode: "html" });
+                bot.sendMessage(msg.chat.id, formatWorkers(result), { parse_mode: "html" });
             })
             .catch(console.error);
     }
