@@ -1,7 +1,6 @@
 var TelegramBot = require('node-telegram-bot-api');
-var request = require('request');
 var http = require('http');
-var https = require('https');
+//var https = require('https');
 var util = require("util");
 
 var usUrl = 'http://zcash.flypool.org/api/miner_new/t1ZGwVoKpoTHV9bN1w6VXTXUHyhMykPT2D9';
@@ -15,13 +14,13 @@ var lastTrans = '';
 var conversations = {};
 
 // Any kind of message
-bot.onText(/\/subscrib(.+)/, function (msg, match) {
+bot.onText(/\/subscrib(.+)/, function (msg) {
   var fromId = msg.chat.id;
   if (conversations[fromId] !== true) conversations[fromId] = true
   console.log(util.inspect(conversations, {showHidden: false, depth: null}));
 });
 
-bot.onText(/\/statu(.+)/, function (msg, match) {
+bot.onText(/\/statu(.+)/, function (msg) {
   var fromId = msg.chat.id;
   http.get(usUrl, function(res){
       var body = '';
