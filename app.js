@@ -17,7 +17,7 @@ var conversations = {};
 // Any kind of message
 bot.onText(/\/subscrib(.+)/, function (msg, match) {
   var fromId = msg.chat.id;
-  if (conversations[fromId] != true) conversations[fromId] = true
+  if (conversations[fromId] !== true) conversations[fromId] = true
   console.log(util.inspect(conversations, {showHidden: false, depth: null}));
 });
 
@@ -62,7 +62,7 @@ setInterval(function() {
       });
       res.on('end', function(){
           var apiResponse = JSON.parse(body);
-          if (lastTrans != apiResponse.payouts[0].txHash) {
+          if (lastTrans !== apiResponse.payouts[0].txHash) {
             lastTrans = apiResponse.payouts[0].txHash;
             zec = apiResponse.payouts[0].amount/100000000;
             for (pend in conversations) {
@@ -70,7 +70,7 @@ setInterval(function() {
             }
           } else {
             //for (pend in conversations) bot.sendMessage(pend, 'No change');
-          };
+          }
       });
   });
 }, 10000);
