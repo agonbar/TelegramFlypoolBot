@@ -1,0 +1,5 @@
+{
+    "telegram_token": "",
+    "update_interval": 30000,
+    "update_exchange": 10000
+}
