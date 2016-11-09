@@ -1,0 +1,18 @@
+{
+  "name": "nodejs-bot",
+  "version": "1.0.0",
+  "description": "Small bot for telegram",
+  "author": "Adrian Gonzalez Barbosa <adrian.gonzalez.barbosa@gmail.com>",
+  "contributors": [{
+      "name": "Aitor Gonzalez Fernandez",
+      "email": "reimashi@gmail.com"
+  }],
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "main": "app.js",
+  "dependencies": {
+    "node-telegram-bot-api": "*"
+  },
+  "license": "MIT"
+}
